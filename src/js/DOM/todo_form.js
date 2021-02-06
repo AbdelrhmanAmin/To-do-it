@@ -1,6 +1,17 @@
 import Todo from '../logic/Todo';
 
-const Display = () => {
+function formatDate(date) {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+const Form = () => {
   const priorities = ['high', 'med', 'low'];
   const content = document.getElementById('content');
   const form = document.createElement('form');
@@ -23,14 +34,6 @@ const Display = () => {
   const date = document.createElement('input');
   divDate.className = 'mb-3';
   date.setAttribute('type', 'date');
-  const divDone = document.createElement('div');
-  const done = document.createElement('input');
-  const doneL = document.createElement('LABEL');
-  done.setAttribute('type', 'checkbox');
-  done.className = 'form-check-input';
-  doneL.innerHTML = 'Done:';
-  doneL.className = 'form-label px-3';
-  divDone.className = 'mb-3';
   const priority = document.createElement('SELECT');
   const btn = document.createElement('input');
   btn.setAttribute('type', 'submit');
@@ -42,7 +45,6 @@ const Display = () => {
   description.required = true;
   date.id = 'date';
   date.required = true;
-  done.id = 'done';
   priority.id = 'priority';
   btn.id = 'btn';
   for (let x of priorities) {
@@ -62,12 +64,23 @@ const Display = () => {
   form.appendChild(divDesc);
   divDate.appendChild(date);
   form.appendChild(divDate);
-  divDone.appendChild(doneL);
-  divDone.appendChild(done);
-  form.appendChild(divDone);
   form.appendChild(priority);
   form.appendChild(btn);
   content.appendChild(form);
-  content.appendChild(h1);
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (title.value !== '' && description.value !== '') {
+      const todo = new Todo(
+        title.value,
+        description.value,
+        formatDate(date.value),
+        false,
+        priority.value
+      );
+      todo.add();
+    }
+    window.location.reload();
+  });
 };
-export default Display;
+export default Form;

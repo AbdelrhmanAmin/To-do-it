@@ -7,10 +7,7 @@ export default class Todo {
     this.priority = priority;
   }
   add() {
-    const arr = JSON.parse(localStorage.getItem('todos')) || [];
-    if (arr === []) {
-      localStorage.setItem('todos', []);
-    }
+    const arr = JSON.parse(localStorage.getItem('todos'));
     arr.push(this.create());
     localStorage.setItem('todos', JSON.stringify(arr));
   }
