@@ -1,0 +1,14 @@
+#content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 20px;
+  padding: 5px;
+}
+#modal-btn {
+  position: absolute;
+  z-index: 1;
+  right: 35px;
+  bottom: 60px;
+  border-radius: 35%;
+  padding: 13px 15px;
+}

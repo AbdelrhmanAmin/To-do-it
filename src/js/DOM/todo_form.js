@@ -1,16 +1,5 @@
 import Todo from '../logic/Todo';
 
-function formatDate(date) {
-  var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
-
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-
-  return [year, month, day].join('-');
-}
 const Form = () => {
   const priorities = ['high', 'med', 'low'];
   const modalBtn = document.getElementById('modal-btn');
@@ -111,7 +100,7 @@ const Form = () => {
       const todo = new Todo(
         title.value,
         description.value,
-        formatDate(date.value),
+        date.value,
         false,
         priority.value
       );

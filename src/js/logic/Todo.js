@@ -11,27 +11,6 @@ export default class Todo {
     arr.push(this.create());
     localStorage.setItem('todos', JSON.stringify(arr));
   }
-  delete() {
-    const arr = JSON.parse(localStorage.getItem('todos'));
-    priority;
-    for (let i = 0; i < arr.length; i++) {
-      if (this.title == arr[i].title) {
-        arr.splice(i, 1);
-      }
-    }
-    localStorage.setItem('todos', JSON.stringify(arr));
-  }
-  edit(done = false, priority) {
-    const arr = JSON.parse(localStorage.getItem('todos'));
-    for (let i = 0; i < arr.length; i++) {
-      if (this.title == arr[i].title) {
-        arr[i].done = done;
-        arr[i].priority = priority;
-        console.log(arr[i]);
-      }
-    }
-    localStorage.setItem('todos', JSON.stringify(arr));
-  }
   create() {
     const { title, description, date, done, priority } = this;
     return {
