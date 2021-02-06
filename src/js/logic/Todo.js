@@ -1,10 +1,10 @@
-const priorities = ['high', 'med', 'low'];
 export default class Todo {
-  constructor(title, description, date, done = false) {
+  constructor(title, description, date, done = false, priority = 'low') {
     this.title = String(title);
     this.description = String(description);
     this.date = new Date(date);
     this.done = done;
+    this.priority = priority;
   }
   add() {
     const arr = JSON.parse(localStorage.getItem('todos')) || [];
@@ -24,23 +24,25 @@ export default class Todo {
     }
     localStorage.setItem('todos', JSON.stringify(arr));
   }
-  edit(done) {
+  edit(done = false, priority) {
     const arr = JSON.parse(localStorage.getItem('todos'));
     for (let i = 0; i < arr.length; i++) {
       if (this.title == arr[i].title) {
         arr[i].done = done;
+        arr[i].priority = priority;
         console.log(arr[i]);
       }
     }
     localStorage.setItem('todos', JSON.stringify(arr));
   }
   create() {
-    const { title, description, date, done } = this;
+    const { title, description, date, done, priority } = this;
     return {
       title,
       description,
       date,
       done,
+      priority,
     };
   }
 }

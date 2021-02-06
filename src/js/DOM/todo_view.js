@@ -1,0 +1,73 @@
+import Todo from '../logic/Todo';
+
+const Display = () => {
+  const priorities = ['high', 'med', 'low'];
+  const content = document.getElementById('content');
+  const form = document.createElement('form');
+  const divTitle = document.createElement('div');
+  const title = document.createElement('input');
+  const titleL = document.createElement('LABEL');
+  title.setAttribute('type', 'text');
+  title.className = 'form-control';
+  titleL.innerHTML = 'Title:';
+  titleL.className = 'form-label h3';
+  divTitle.className = 'mb-3';
+  const divDesc = document.createElement('div');
+  const description = document.createElement('TEXTAREA');
+  const descriptionL = document.createElement('LABEL');
+  description.className = 'form-control';
+  descriptionL.innerHTML = 'description:';
+  descriptionL.className = 'form-label h3';
+  divDesc.className = 'mb-3';
+  const divDate = document.createElement('div');
+  const date = document.createElement('input');
+  divDate.className = 'mb-3';
+  date.setAttribute('type', 'date');
+  const divDone = document.createElement('div');
+  const done = document.createElement('input');
+  const doneL = document.createElement('LABEL');
+  done.setAttribute('type', 'checkbox');
+  done.className = 'form-check-input';
+  doneL.innerHTML = 'Done:';
+  doneL.className = 'form-label px-3';
+  divDone.className = 'mb-3';
+  const priority = document.createElement('SELECT');
+  const btn = document.createElement('input');
+  btn.setAttribute('type', 'submit');
+  btn.className = 'btn btn-primary';
+  priority.className = 'form-select';
+  title.id = 'title';
+  title.required = true;
+  description.id = 'description';
+  description.required = true;
+  date.id = 'date';
+  date.required = true;
+  done.id = 'done';
+  priority.id = 'priority';
+  btn.id = 'btn';
+  for (let x of priorities) {
+    var option = document.createElement('option');
+    if (x == priorities[2]) {
+      option.selected = true;
+    }
+    option.value = x;
+    option.text = x;
+    priority.appendChild(option);
+  }
+  divTitle.appendChild(titleL);
+  divTitle.appendChild(title);
+  form.appendChild(divTitle);
+  divDesc.appendChild(descriptionL);
+  divDesc.appendChild(description);
+  form.appendChild(divDesc);
+  divDate.appendChild(date);
+  form.appendChild(divDate);
+  divDone.appendChild(doneL);
+  divDone.appendChild(done);
+  form.appendChild(divDone);
+  form.appendChild(priority);
+  form.appendChild(btn);
+  content.appendChild(form);
+  content.appendChild(h1);
+};
+export default Display;
