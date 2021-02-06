@@ -9,7 +9,6 @@ const Done = (value) => {
 };
 const Display = () => {
   const content = document.getElementById('content');
-  console.log(localStorage.getItem('todos'));
   if (localStorage.getItem('todos') === null) {
     const today = new Date();
     const date =

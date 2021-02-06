@@ -18,7 +18,27 @@
     />
   </head>
   <body>
+    <nav class="w-100 d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="modal-btn"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        Create a New To-do
+      </button>
+    </nav>
     <div id="content"></div>
+    <div
+      class="modal"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    ></div>
+
     <script src="./main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
