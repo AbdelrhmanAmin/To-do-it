@@ -52,7 +52,7 @@ const Delete = (x) => {
   localStorage.setItem('todos', JSON.stringify(arr));
   window.location.reload();
 };
-const Display = () => {
+const Tdisplay = () => {
   const content = document.getElementById('content');
   if (
     localStorage.getItem('todos') === null ||
@@ -144,4 +144,4 @@ const Display = () => {
     content.appendChild(container);
   }
 };
-export default Display;
+export default Tdisplay;

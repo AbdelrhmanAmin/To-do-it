@@ -1,9 +1,8 @@
-import Todo from '../logic/Todo';
+import Group from '../logic/Group';
 
-const Tform = () => {
-  const priorities = ['high', 'med', 'low'];
-  const modalBtn = document.getElementById('modal-btn');
-  const modal = document.getElementById('exampleModal');
+const Gform = () => {
+  const modalBtn = document.getElementById('modal-btn2');
+  const modal = document.getElementById('exampleModal2');
   const dialog = document.createElement('div');
   dialog.className = 'modal-dialog';
 
@@ -15,7 +14,7 @@ const Tform = () => {
 
   const h5 = document.createElement('h5');
   h5.className = 'modal-title text-uppercase text-white';
-  h5.innerHTML = 'Create a To-do!';
+  h5.innerHTML = 'Create a group!';
 
   const exit = document.createElement('button');
   exit.className = 'close';
@@ -25,6 +24,7 @@ const Tform = () => {
   exit.className = 'btn btn-danger py-0 px-2';
 
   modalBtn.addEventListener('click', () => {
+    console.log('hello mom');
     modal.style = 'display:block; background: #050505a8';
   });
   exit.addEventListener('click', () => {
@@ -49,33 +49,15 @@ const Tform = () => {
   descriptionL.innerHTML = 'Description:';
   descriptionL.className = 'form-label h5';
   divDesc.className = 'mb-3';
-  const divDate = document.createElement('div');
-  const date = document.createElement('input');
-  divDate.className = 'mb-3';
-  date.setAttribute('type', 'date');
-  const priority = document.createElement('SELECT');
   const btn = document.createElement('input');
   btn.setAttribute('type', 'submit');
   btn.className = 'btn btn-primary w-100';
   btn.style = 'font-weight: bolder';
-  priority.className = 'form-select my-3';
   title.id = 'title';
   title.required = true;
   description.id = 'description';
   description.required = true;
-  date.id = 'date';
-  date.required = true;
-  priority.id = 'priority';
   btn.id = 'btn';
-  for (let x of priorities) {
-    var option = document.createElement('option');
-    if (x == priorities[2]) {
-      option.selected = true;
-    }
-    option.value = x;
-    option.text = x;
-    priority.appendChild(option);
-  }
   header.appendChild(h5);
   exit.appendChild(spanExit);
   header.appendChild(exit);
@@ -86,9 +68,6 @@ const Tform = () => {
   divDesc.appendChild(descriptionL);
   divDesc.appendChild(description);
   form.appendChild(divDesc);
-  divDate.appendChild(date);
-  form.appendChild(divDate);
-  form.appendChild(priority);
   form.appendChild(btn);
   content.appendChild(form);
   container.appendChild(content);
@@ -97,16 +76,10 @@ const Tform = () => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (title.value !== '' && description.value !== '') {
-      const todo = new Todo(
-        title.value,
-        description.value,
-        date.value,
-        false,
-        priority.value
-      );
-      todo.add();
+      const group = new Group(title.value, description.value);
+      group.add();
     }
     window.location.reload();
   });
 };
-export default Tform;
+export default Gform;
