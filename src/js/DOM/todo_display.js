@@ -15,7 +15,6 @@ function formatDate(date) {
 const Done = (obj) => {
   const data = JSON.parse(localStorage.getItem('groups'));
   const priorities = JSON.parse(localStorage.getItem('priorities'));
-  console.log(data);
   for (let x of data[0].todos) {
     if (x.title === obj.title) {
       x.done = !x.done;
@@ -46,13 +45,15 @@ const Done = (obj) => {
   window.location.reload();
 };
 const Delete = (x) => {
-  const arr = JSON.parse(localStorage.getItem('todos'));
+  const arr = JSON.parse(localStorage.getItem('groups'));
   for (let i = 0; i < arr.length; i++) {
-    if (x.title == arr[i].title) {
-      arr.splice(i, 1);
+    if (getParam().trim() == arr[i].title) {
+      arr[i].todos.forEach((z, index) => {
+        arr[i].todos.splice(index, index + 1);
+      });
     }
   }
-  localStorage.setItem('todos', JSON.stringify(arr));
+  localStorage.setItem('groups', JSON.stringify(arr));
   window.location.reload();
 };
 const Tdisplay = () => {
@@ -84,9 +85,8 @@ const Tdisplay = () => {
   }
   let data = [];
   const groups = JSON.parse(localStorage.getItem('groups'));
-  const param = getParam();
   groups.map((x) => {
-    if (x.title === param) {
+    if (x.title === getParam().trim()) {
       data = [...x.todos];
     }
   });

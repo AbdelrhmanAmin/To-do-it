@@ -30,7 +30,6 @@ const Gform = () => {
   exit.className = 'btn btn-danger py-0 px-2';
 
   modalBtn.addEventListener('click', () => {
-    console.log('hello mom');
     modal.style = 'display:block; background: #050505a8';
   });
   exit.addEventListener('click', () => {
@@ -60,6 +59,8 @@ const Gform = () => {
   btn.className = 'btn btn-primary w-100';
   btn.style = 'font-weight: bolder';
   title.id = 'title';
+  title.pattern = '[A-Za-z]+';
+  title.title = 'Only letters!';
   title.required = true;
   description.id = 'description';
   description.required = true;
@@ -80,7 +81,7 @@ const Gform = () => {
   dialog.appendChild(container);
   modal.appendChild(dialog);
   displayHTML.appendChild(modalBtn);
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('submit', (e) => {
     e.preventDefault();
     if (title.value !== '' && description.value !== '') {
       const group = new Group(title.value, description.value, []);

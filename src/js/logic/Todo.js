@@ -1,13 +1,12 @@
 import getParam from '../DOM/tools';
 
 export default class Todo {
-  constructor(title, description, date, done = false, priority = 'low', group) {
+  constructor(title, description, date, done = false, priority = 'low') {
     this.title = String(title);
     this.description = String(description);
     this.date = new Date(date);
     this.done = done;
     this.priority = priority;
-    this.group = group;
   }
   add() {
     const url = [];
@@ -18,14 +17,14 @@ export default class Todo {
     }
     const Gdefault = data[0].todos;
     Gdefault.push(this.create());
-    if (url.includes(getParam()) && getParam() != 'Default') {
+    if (url.includes(getParam().trim()) && getParam().trim() != 'Default') {
       data.map((x) => {
-        if (x.title === getParam()) {
+        if (x.title === getParam().trim()) {
           selectedField = x;
         }
       });
+      selectedField.todos.push(this.create());
     }
-    selectedField.todos.push(this.create());
     localStorage.setItem('groups', JSON.stringify(data));
   }
   create() {
@@ -36,7 +35,6 @@ export default class Todo {
       date,
       done,
       priority,
-      group,
     };
   }
 }

@@ -10,13 +10,12 @@ const data = JSON.parse(localStorage.getItem('groups'));
 for (let x of data) {
   url.push(x.title);
 }
-if (getParam() === '') {
+if (getParam() === '' || getParam() === ' ') {
   document.getElementById('content').innerHTML = '';
   Gform();
   Gdisplay();
 }
-console.log(url);
-if (url.includes(getParam())) {
+if (url.includes(getParam().trim())) {
   document.getElementById('content').innerHTML = '';
   Tform();
   Tdisplay();
