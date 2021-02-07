@@ -1,7 +1,8 @@
 export default class Group {
-  constructor(title, description) {
+  constructor(title, description, todos) {
     this.title = String(title);
     this.description = String(description);
+    this.todos = todos;
   }
   add() {
     const arr = JSON.parse(localStorage.getItem('groups'));
@@ -9,10 +10,11 @@ export default class Group {
     localStorage.setItem('groups', JSON.stringify(arr));
   }
   create() {
-    const { title, description } = this;
+    const { title, description, todos } = this;
     return {
       title,
       description,
+      todos,
     };
   }
 }

@@ -1,4 +1,6 @@
 import Group from '../logic/Group';
+import Tdisplay from './todo_display';
+import Tform from './todo_form';
 const Delete = (x) => {
   const arr = JSON.parse(localStorage.getItem('groups'));
   for (let i = 0; i < arr.length; i++) {
@@ -18,7 +20,7 @@ const Gdisplay = () => {
     localStorage.setItem(
       'groups',
       JSON.stringify([
-        new Group('Morning mommy', 'Saying good morning to my beloved mother'),
+        new Group('Default', 'Saying good morning to my beloved mother', []),
       ])
     );
   }
@@ -38,8 +40,13 @@ const Gdisplay = () => {
     const h3 = document.createElement('h3');
     const p = document.createElement('p');
     const del = document.createElement('button');
+    const view = document.createElement('a');
     del.className = 'ml-auto btn btn-danger';
     del.innerHTML = 'Delete';
+    view.className = 'ml-auto btn btn-dark';
+    view.innerHTML = 'View Group';
+    view.href = `?=${x.title}`;
+    view.id = 'view_group';
     h3.innerHTML = x.title;
     h3.className = 'text-white';
     p.innerHTML = `<strong>Description:</strong> <br> ${x.description}`;
@@ -47,6 +54,7 @@ const Gdisplay = () => {
       Delete(x);
     });
     footer.appendChild(del);
+    footer.appendChild(view);
     body.appendChild(p);
     header.appendChild(h3);
     card.appendChild(header);

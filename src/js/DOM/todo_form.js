@@ -2,8 +2,14 @@ import Todo from '../logic/Todo';
 
 const Tform = () => {
   const priorities = ['high', 'med', 'low'];
-  const modalBtn = document.getElementById('modal-btn');
+  const displayHTML = document.getElementById('content');
   const modal = document.getElementById('exampleModal');
+  const modalBtn = document.createElement('button');
+  const i = document.createElement('i');
+  modalBtn.className = 'btn btn-warning';
+  modalBtn.id = 'modal-btn2';
+  modalBtn.appendChild(i);
+  i.className = 'fas fa-plus-circle fa-2x text-white';
   const dialog = document.createElement('div');
   dialog.className = 'modal-dialog';
 
@@ -94,6 +100,8 @@ const Tform = () => {
   container.appendChild(content);
   dialog.appendChild(container);
   modal.appendChild(dialog);
+
+  displayHTML.appendChild(modalBtn);
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (title.value !== '' && description.value !== '') {

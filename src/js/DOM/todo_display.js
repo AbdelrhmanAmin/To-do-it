@@ -1,4 +1,6 @@
 import Todo from '../logic/Todo';
+import getParam from './tools';
+
 function formatDate(date) {
   var d = new Date(date),
     month = '' + (d.getMonth() + 1),
@@ -11,9 +13,10 @@ function formatDate(date) {
   return [year, month, day].join('-');
 }
 const Done = (obj) => {
-  const data = JSON.parse(localStorage.getItem('todos'));
+  const data = JSON.parse(localStorage.getItem('groups'));
   const priorities = JSON.parse(localStorage.getItem('priorities'));
-  for (let x of data) {
+  console.log(data);
+  for (let x of data[0].todos) {
     if (x.title === obj.title) {
       x.done = !x.done;
       if (localStorage.getItem('priorities') === null) {
@@ -39,7 +42,7 @@ const Done = (obj) => {
       }
     }
   }
-  localStorage.setItem('todos', JSON.stringify(data));
+  localStorage.setItem('groups', JSON.stringify(data));
   window.location.reload();
 };
 const Delete = (x) => {
@@ -54,10 +57,12 @@ const Delete = (x) => {
 };
 const Tdisplay = () => {
   const content = document.getElementById('content');
-  if (
-    localStorage.getItem('todos') === null ||
-    JSON.parse(localStorage.getItem('todos'))[0] == undefined
-  ) {
+  const home = document.createElement('a');
+  home.href = `?=`;
+  home.innerHTML = 'home';
+  home.className = 'position-fixed btn btn-primary px-2 m-0';
+  home.style = 'top:0';
+  if (JSON.parse(localStorage.getItem('groups'))[0].todos.length === 0) {
     const today = new Date();
     const date =
       today.getFullYear() +
@@ -65,20 +70,27 @@ const Tdisplay = () => {
       (today.getMonth() + 1) +
       '-' +
       today.getDate();
-    localStorage.setItem(
-      'todos',
-      JSON.stringify([
-        new Todo(
-          'Morning mommy',
-          'Saying good morning to my beloved mother',
-          date,
-          false,
-          'high'
-        ),
-      ])
+    const groups = JSON.parse(localStorage.getItem('groups'));
+    groups[0].todos.push(
+      new Todo(
+        'Morning mommy',
+        'Saying good morning to my beloved mother',
+        date,
+        false,
+        'high'
+      )
     );
+    localStorage.setItem('groups', JSON.stringify(groups));
   }
-  const data = JSON.parse(localStorage.getItem('todos'));
+  let data = [];
+  const groups = JSON.parse(localStorage.getItem('groups'));
+  const param = getParam();
+  groups.map((x) => {
+    if (x.title === param) {
+      data = [...x.todos];
+    }
+  });
+
   for (let x of data) {
     const container = document.createElement('div');
     container.className = 'container';
@@ -141,6 +153,7 @@ const Tdisplay = () => {
     card.appendChild(body);
     card.appendChild(footer);
     container.appendChild(card);
+    document.body.appendChild(home);
     content.appendChild(container);
   }
 };

@@ -1,8 +1,14 @@
 import Group from '../logic/Group';
 
 const Gform = () => {
-  const modalBtn = document.getElementById('modal-btn2');
+  const displayHTML = document.getElementById('content');
   const modal = document.getElementById('exampleModal2');
+  const modalBtn = document.createElement('button');
+  const i = document.createElement('i');
+  modalBtn.className = 'btn btn-dark';
+  modalBtn.id = 'modal-btn2';
+  modalBtn.appendChild(i);
+  i.className = 'fas fa-plus-circle fa-2x text-white';
   const dialog = document.createElement('div');
   dialog.className = 'modal-dialog';
 
@@ -73,10 +79,11 @@ const Gform = () => {
   container.appendChild(content);
   dialog.appendChild(container);
   modal.appendChild(dialog);
+  displayHTML.appendChild(modalBtn);
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (title.value !== '' && description.value !== '') {
-      const group = new Group(title.value, description.value);
+      const group = new Group(title.value, description.value, []);
       group.add();
     }
     window.location.reload();
