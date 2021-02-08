@@ -1,5 +1,5 @@
 import Todo from '../logic/Todo';
-
+import {formatDate} from './tools';
 const Tform = () => {
   const priorities = ['high', 'med', 'low'];
   const displayHTML = document.getElementById('content');

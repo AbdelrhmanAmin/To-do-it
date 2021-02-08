@@ -17,11 +17,11 @@ const Gdisplay = () => {
     || JSON.parse(localStorage.getItem('groups'))[0] === undefined
   ) {
     localStorage.setItem('groups',
-      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', []),
+      JSON.stringify([new Group('Default', 'The general group where all created todos exist', []),
       ]));
   }
   const data = JSON.parse(localStorage.getItem('groups'));
-  for (let x = 0; x < data.length; x += 1) {
+  data.map((x) => {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -40,13 +40,13 @@ const Gdisplay = () => {
     del.innerHTML = 'Delete';
     view.className = 'ml-auto btn btn-dark';
     view.innerHTML = 'View Group';
-    view.href = `?=${data[x].title}`;
+    view.href = `?=${x.title}`;
     view.id = 'view_group';
     h3.innerHTML = x.title;
     h3.className = 'text-white';
-    p.innerHTML = `<strong>Description:</strong> <br> ${data[x].description}`;
+    p.innerHTML = `<strong>Description:</strong> <br> ${x.description}`;
     del.addEventListener('click', () => {
-      Delete(data[x]);
+      Delete(x);
     });
     footer.appendChild(del);
     footer.appendChild(view);
@@ -57,6 +57,6 @@ const Gdisplay = () => {
     card.appendChild(footer);
     container.appendChild(card);
     content.appendChild(container);
-  }
+  })
 };
 export default Gdisplay;

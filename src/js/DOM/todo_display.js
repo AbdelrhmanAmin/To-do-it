@@ -1,17 +1,7 @@
 import Todo from '../logic/Todo';
 import getParam from './tools';
+import {formatDate} from './tools';
 
-function formatDate(date) {
-  const d = new Date(date);
-  let month = ` ${(d.getMonth() + 1)}`;
-  let day = ` ${d.getDate()}`;
-  const year = ` ${d.getFullYear()}`;
-
-  if (month.length < 2) month = `0 ${month}`;
-  if (day.length < 2) day = `0 ${day}`;
-
-  return [year, month, day].join('-');
-}
 const Done = (obj) => {
   const data = JSON.parse(localStorage.getItem('groups'));
   const priorities = JSON.parse(localStorage.getItem('priorities'));
@@ -62,12 +52,9 @@ const Tdisplay = () => {
   home.className = 'position-fixed btn btn-primary px-2 m-0';
   home.style = 'top:0';
   if (JSON.parse(localStorage.getItem('groups'))[0].todos.length === 0) {
-    const today = new Date();
-
-    const date = `${today.getFullYear()} - ${(today.getMonth() + 1)} - ${today.getDate()}`;
     const groups = JSON.parse(localStorage.getItem('groups'));
     groups[0].todos.push(
-      new Todo('Morning mommy', 'Saying good morning to my beloved mother', date, false, 'high'),
+      new Todo('Morning mommy', 'Saying good morning to my beloved mother', formatDate(new Date()), false, 'high'),
     );
     localStorage.setItem('groups', JSON.stringify(groups));
   }
@@ -140,8 +127,8 @@ const Tdisplay = () => {
     card.appendChild(body);
     card.appendChild(footer);
     container.appendChild(card);
-    document.body.appendChild(home);
     content.appendChild(container);
   });
+  document.body.appendChild(home);
 };
 export default Tdisplay;
