@@ -2,20 +2,20 @@ import Todo from '../logic/Todo';
 import getParam from './tools';
 
 function formatDate(date) {
-  var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
+  const d = new Date(date),
+    month = ` ${(d.getMonth() + 1)}`,
+    day =  ` ${d.getDate()}`,
+    year = ` ${d.getFullYear()}`;
 
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
+  if (month.length < 2) month = `0 ${month}`;
+  if (day.length < 2) day = `0 ${day}`;
 
   return [year, month, day].join('-');
 }
 const Done = (obj) => {
   const data = JSON.parse(localStorage.getItem('groups'));
   const priorities = JSON.parse(localStorage.getItem('priorities'));
-  for (let x of data[0].todos) {
+  for (const x of data[0].todos) {
     if (x.title === obj.title) {
       x.done = !x.done;
       if (localStorage.getItem('priorities') === null) {
@@ -24,9 +24,7 @@ const Done = (obj) => {
         localStorage.setItem('priorities', JSON.stringify(arr));
       }
       if (
-        priorities.every((i) => {
-          return i.title != x.title;
-        })
+        priorities.every((i) =>  i.title != x.title)
       ) {
         priorities.push({ priority: x.priority, title: x.title });
         localStorage.setItem('priorities', JSON.stringify(priorities));
@@ -34,8 +32,8 @@ const Done = (obj) => {
       if (x.done === true) {
         x.priority = 'done';
       }
-      for (let i of priorities) {
-        if (x.done === false && i.title == x.title) {
+      for (const i of priorities) {
+        if (x.done === false && i.title === x.title) {
           x.priority = i.priority;
         }
       }
@@ -46,8 +44,8 @@ const Done = (obj) => {
 };
 const Delete = (x) => {
   const arr = JSON.parse(localStorage.getItem('groups'));
-  for (let i = 0; i < arr.length; i++) {
-    if (getParam().trim() == arr[i].title) {
+  for (let i = 0; i < arr.length; i+=1) {
+    if (getParam().trim() === arr[i].title) {
       arr[i].todos.forEach((z, index) => {
         arr[i].todos.splice(index, index + 1);
       });
@@ -65,21 +63,11 @@ const Tdisplay = () => {
   home.style = 'top:0';
   if (JSON.parse(localStorage.getItem('groups'))[0].todos.length === 0) {
     const today = new Date();
-    const date =
-      today.getFullYear() +
-      '-' +
-      (today.getMonth() + 1) +
-      '-' +
-      today.getDate();
+
+    const date = `${today.getFullYear()} - ${(today.getMonth() + 1)} - ${today.getDate()}`
     const groups = JSON.parse(localStorage.getItem('groups'));
     groups[0].todos.push(
-      new Todo(
-        'Morning mommy',
-        'Saying good morning to my beloved mother',
-        date,
-        false,
-        'high'
-      )
+      new Todo('Morning mommy', 'Saying good morning to my beloved mother', date, false, 'high')
     );
     localStorage.setItem('groups', JSON.stringify(groups));
   }
@@ -91,7 +79,7 @@ const Tdisplay = () => {
     }
   });
 
-  for (let x of data) {
+  for (const x of data) {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -101,8 +89,7 @@ const Tdisplay = () => {
     const body = document.createElement('div');
     body.className = 'card-body';
     const footer = document.createElement('div');
-    footer.className =
-      'card-footer d-flex justify-content-between align-items-center';
+    footer.className = 'card-footer d-flex justify-content-between align-items-center';
     const h3 = document.createElement('h3');
     const p = document.createElement('p');
     const span = document.createElement('span');

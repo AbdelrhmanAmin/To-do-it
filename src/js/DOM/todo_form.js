@@ -73,8 +73,8 @@ const Tform = () => {
   date.required = true;
   priority.id = 'priority';
   btn.id = 'btn';
-  for (let x of priorities) {
-    var option = document.createElement('option');
+  for (const x of priorities) {
+    const option = document.createElement('option');
     if (x == priorities[2]) {
       option.selected = true;
     }
@@ -105,13 +105,7 @@ const Tform = () => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     if (title.value !== '' && description.value !== '') {
-      const todo = new Todo(
-        title.value,
-        description.value,
-        date.value,
-        false,
-        priority.value
-      );
+      const todo = new Todo(title.value, description.value, date.value, false, priority.value);
       todo.add();
     }
     window.location.reload();

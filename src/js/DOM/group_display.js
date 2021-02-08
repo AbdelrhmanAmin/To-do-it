@@ -1,10 +1,9 @@
 import Group from '../logic/Group';
-import Tdisplay from './todo_display';
-import Tform from './todo_form';
+
 const Delete = (x) => {
   const arr = JSON.parse(localStorage.getItem('groups'));
-  for (let i = 0; i < arr.length; i++) {
-    if (x.title == arr[i].title) {
+  for (let i = 0; i < arr.length; i+=1) {
+    if (x.title === arr[i].title) {
       arr.splice(i, 1);
     }
   }
@@ -14,18 +13,15 @@ const Delete = (x) => {
 const Gdisplay = () => {
   const content = document.getElementById('content');
   if (
-    localStorage.getItem('groups') === null ||
-    JSON.parse(localStorage.getItem('groups'))[0] == undefined
+    localStorage.getItem('groups') === null
+    || JSON.parse(localStorage.getItem('groups'))[0] === undefined
   ) {
-    localStorage.setItem(
-      'groups',
-      JSON.stringify([
-        new Group('Default', 'Saying good morning to my beloved mother', []),
-      ])
-    );
+    localStorage.setItem('groups',
+      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', [])
+        ,]));
   }
   const data = JSON.parse(localStorage.getItem('groups'));
-  for (let x of data) {
+  for (const x of data) {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -35,8 +31,7 @@ const Gdisplay = () => {
     const body = document.createElement('div');
     body.className = 'card-body';
     const footer = document.createElement('div');
-    footer.className =
-      'card-footer d-flex justify-content-between align-items-center';
+    footer.className = 'card-footer d-flex justify-content-between align-items-center';
     const h3 = document.createElement('h3');
     const p = document.createElement('p');
     const del = document.createElement('button');

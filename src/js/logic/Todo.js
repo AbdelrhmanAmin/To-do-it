@@ -8,27 +8,30 @@ export default class Todo {
     this.done = done;
     this.priority = priority;
   }
+
   add() {
     const url = [];
     const data = JSON.parse(localStorage.getItem('groups'));
     let selectedField;
-    for (let x of data) {
+    for (const x of data) {
       url.push(x.title);
     }
     const Gdefault = data[0].todos;
     Gdefault.push(this.create());
-    if (url.includes(getParam().trim()) && getParam().trim() != 'Default') {
+    if (url.includes(getParam().trim()) && getParam().trim() !== 'Default') {
       data.map((x) => {
         if (x.title === getParam().trim()) {
-          selectedField = x;
+         return selectedField = x;
         }
       });
       selectedField.todos.push(this.create());
     }
     localStorage.setItem('groups', JSON.stringify(data));
   }
+
   create() {
-    const { title, description, date, done, priority, group } = this;
+    const { title, description, date, done, priority } = this;
+
     return {
       title,
       description,
