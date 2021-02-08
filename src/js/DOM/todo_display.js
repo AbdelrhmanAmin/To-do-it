@@ -1,6 +1,5 @@
 import Todo from '../logic/Todo';
-import getParam from './tools';
-import {formatDate} from './tools';
+import getParam, {formatDate} from './tools';
 
 const Done = (obj) => {
   const data = JSON.parse(localStorage.getItem('groups'));
