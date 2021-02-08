@@ -36,7 +36,8 @@ export default class Todo {
       description,
       date,
       done,
-      priority } = this;
+      priority }
+      = this;
 
     return {
       title,

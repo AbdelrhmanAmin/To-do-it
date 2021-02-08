@@ -76,11 +76,10 @@ const Tdisplay = () => {
   groups.map((x) => {
     if (x.title === getParam().trim()) {
       data = [...x.todos];
-      return data
     }
+    return data;
   });
-
-  for (let x = 0; x < data.length; x += 1) {
+  data.forEach((x) => {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -105,12 +104,12 @@ const Tdisplay = () => {
     const del = document.createElement('button');
     del.className = 'ml-auto btn btn-danger';
     del.innerHTML = 'Delete';
-    priority.innerHTML = data[x].priority;
-    h3.innerHTML = data[x].title;
+    priority.innerHTML = x.priority;
+    h3.innerHTML = x.title;
     h3.className = 'text-white';
-    p.innerHTML = `<strong>Description:</strong> <br> ${data[x].description}`;
-    span.innerHTML = `<strong>Date: </strong> <br> ${formatDate(data[x].date)}`;
-    done.checked = data[x].done;
+    p.innerHTML = `<strong>Description:</strong> <br> ${x.description}`;
+    span.innerHTML = `<strong>Date: </strong> <br> ${formatDate(x.date)}`;
+    done.checked = x.done;
     if (priority.innerHTML === 'high') {
       header.className = 'p-3 bg-danger';
     }
@@ -125,10 +124,10 @@ const Tdisplay = () => {
       h3.className = 'text-dark';
     }
     done.addEventListener('click', () => {
-      Done(data[x]);
+      Done(x);
     });
     del.addEventListener('click', () => {
-      Delete(data[x]);
+      Delete(x);
     });
     divDone.appendChild(doneL);
     divDone.appendChild(done);
@@ -143,6 +142,6 @@ const Tdisplay = () => {
     container.appendChild(card);
     document.body.appendChild(home);
     content.appendChild(container);
-  }
+  })
 };
 export default Tdisplay;
