@@ -18,8 +18,7 @@ const Gdisplay = () => {
   ) {
     localStorage.setItem('groups',
       JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', []),
-      ]),
-    );
+      ]),);
   }
   const data = JSON.parse(localStorage.getItem('groups'));
   for (let x = 0; x < data.length; x += 1) {
