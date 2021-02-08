@@ -142,6 +142,6 @@ const Tdisplay = () => {
     container.appendChild(card);
     document.body.appendChild(home);
     content.appendChild(container);
-  })
+  });
 };
 export default Tdisplay;

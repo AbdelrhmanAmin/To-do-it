@@ -17,7 +17,8 @@ const Gdisplay = () => {
     || JSON.parse(localStorage.getItem('groups'))[0] === undefined
   ) {
     localStorage.setItem('groups',
-      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', []),])
+      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', []),
+      ]),
     );
   }
   const data = JSON.parse(localStorage.getItem('groups'));
