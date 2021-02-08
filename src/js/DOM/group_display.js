@@ -57,7 +57,7 @@ const Gdisplay = () => {
     card.appendChild(footer);
     container.appendChild(card);
     content.appendChild(container);
-    return true
+    return true;
   });
 };
 export default Gdisplay;
