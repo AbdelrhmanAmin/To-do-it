@@ -13,15 +13,16 @@ export default class Todo {
     const url = [];
     const data = JSON.parse(localStorage.getItem('groups'));
     let selectedField;
-    for (const x of data) {
-      url.push(x.title);
+    for (let x = 0; x < data.length; x += 1) {
+      url.push(data[x].title);
     }
     const Gdefault = data[0].todos;
     Gdefault.push(this.create());
     if (url.includes(getParam().trim()) && getParam().trim() !== 'Default') {
       data.map((x) => {
         if (x.title === getParam().trim()) {
-         return selectedField = x;
+          selectedField = x;
+          return selectedField
         }
       });
       selectedField.todos.push(this.create());

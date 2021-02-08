@@ -73,13 +73,13 @@ const Tform = () => {
   date.required = true;
   priority.id = 'priority';
   btn.id = 'btn';
-  for (const x of priorities) {
+  for (let x = 0; x < priorities.length; x += 1) {
     const option = document.createElement('option');
-    if (x == priorities[2]) {
+    if (priorities[x] === priorities[2]) {
       option.selected = true;
     }
-    option.value = x;
-    option.text = x;
+    option.value = priorities[x];
+    option.text = priorities[x];
     priority.appendChild(option);
   }
   header.appendChild(h5);

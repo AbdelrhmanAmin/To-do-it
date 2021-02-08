@@ -2,10 +2,10 @@ import Todo from '../logic/Todo';
 import getParam from './tools';
 
 function formatDate(date) {
-  const d = new Date(date),
-    month = ` ${(d.getMonth() + 1)}`,
-    day =  ` ${d.getDate()}`,
-    year = ` ${d.getFullYear()}`;
+  const d = new Date(date)
+  const month = ` ${(d.getMonth() + 1)}`;
+  const day = ` ${d.getDate()}`;
+  const year = ` ${d.getFullYear()}`;
 
   if (month.length < 2) month = `0 ${month}`;
   if (day.length < 2) day = `0 ${day}`;
@@ -15,26 +15,26 @@ function formatDate(date) {
 const Done = (obj) => {
   const data = JSON.parse(localStorage.getItem('groups'));
   const priorities = JSON.parse(localStorage.getItem('priorities'));
-  for (const x of data[0].todos) {
-    if (x.title === obj.title) {
-      x.done = !x.done;
+  for (let x = 0; x < data[0].todos.length; x += 1) {
+    if (data[0].todos[x].title === obj.title) {
+      data[0].todos[x].done = !data[0].todos[x].done;
       if (localStorage.getItem('priorities') === null) {
         const arr = [];
-        arr.push({ priority: x.priority, title: x.title });
+        arr.push({ priority: data[0].todos[x].priority, title: data[0].todos[x].title });
         localStorage.setItem('priorities', JSON.stringify(arr));
       }
       if (
-        priorities.every((i) =>  i.title != x.title)
+        priorities.every((i) =>  i.title !== data[0].todos[x].title)
       ) {
-        priorities.push({ priority: x.priority, title: x.title });
+        priorities.push({ priority: data[0].todos[x].priority, title: data[0].todos[x].title });
         localStorage.setItem('priorities', JSON.stringify(priorities));
       }
-      if (x.done === true) {
-        x.priority = 'done';
+      if (data[0].todos[x].done === true) {
+        data[0].todos[x].priority = 'done';
       }
-      for (const i of priorities) {
-        if (x.done === false && i.title === x.title) {
-          x.priority = i.priority;
+      for (let i = 0; i < priorities.length; i += 1) {
+        if (data[0].todos[x].done === false && priorities[i].title === data[0].todos[x].title) {
+          data[0].todos[x].priority = priorities[i].priority;
         }
       }
     }
@@ -44,7 +44,7 @@ const Done = (obj) => {
 };
 const Delete = (x) => {
   const arr = JSON.parse(localStorage.getItem('groups'));
-  for (let i = 0; i < arr.length; i+=1) {
+  for (let i = 0; i < arr.length; i += 1) {
     if (getParam().trim() === arr[i].title) {
       arr[i].todos.forEach((z, index) => {
         arr[i].todos.splice(index, index + 1);
@@ -75,7 +75,7 @@ const Tdisplay = () => {
   const groups = JSON.parse(localStorage.getItem('groups'));
   groups.map((x) => {
     if (x.title === getParam().trim()) {
-      data = [...x.todos];
+      return data = [...x.todos];
     }
   });
 

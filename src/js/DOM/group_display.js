@@ -2,7 +2,7 @@ import Group from '../logic/Group';
 
 const Delete = (x) => {
   const arr = JSON.parse(localStorage.getItem('groups'));
-  for (let i = 0; i < arr.length; i+=1) {
+  for (let i = 0; i < arr.length; i += 1) {
     if (x.title === arr[i].title) {
       arr.splice(i, 1);
     }
@@ -17,11 +17,11 @@ const Gdisplay = () => {
     || JSON.parse(localStorage.getItem('groups'))[0] === undefined
   ) {
     localStorage.setItem('groups',
-      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', [])
-        ,]));
+      JSON.stringify([new Group('Default', 'Saying good morning to my beloved mother', [])])
+    );
   }
   const data = JSON.parse(localStorage.getItem('groups'));
-  for (const x of data) {
+  for (let x = 0; x < data.length; x += 1) {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -40,13 +40,13 @@ const Gdisplay = () => {
     del.innerHTML = 'Delete';
     view.className = 'ml-auto btn btn-dark';
     view.innerHTML = 'View Group';
-    view.href = `?=${x.title}`;
+    view.href = `?=${data[x].title}`;
     view.id = 'view_group';
     h3.innerHTML = x.title;
     h3.className = 'text-white';
-    p.innerHTML = `<strong>Description:</strong> <br> ${x.description}`;
+    p.innerHTML = `<strong>Description:</strong> <br> ${data[x].description}`;
     del.addEventListener('click', () => {
-      Delete(x);
+      Delete(data[x]);
     });
     footer.appendChild(del);
     footer.appendChild(view);
