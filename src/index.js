@@ -6,7 +6,7 @@ import getParam from './js/DOM/tools';
 
 const url = [];
 const data = JSON.parse(localStorage.getItem('groups'));
-for (let x = 0; x < data.length;x++) {
+for (let x = 0; x < data.length; x += 1) {
   url.push(data[x].title);
 }
 if (getParam() === '' || getParam() === ' ') {

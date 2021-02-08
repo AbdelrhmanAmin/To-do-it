@@ -2,9 +2,9 @@ import Todo from '../logic/Todo';
 import getParam from './tools';
 
 function formatDate(date) {
-  const d = new Date(date)
-  const month = ` ${(d.getMonth() + 1)}`;
-  const day = ` ${d.getDate()}`;
+  const d = new Date(date);
+  let month = ` ${(d.getMonth() + 1)}`;
+  let day = ` ${d.getDate()}`;
   const year = ` ${d.getFullYear()}`;
 
   if (month.length < 2) month = `0 ${month}`;
@@ -24,7 +24,7 @@ const Done = (obj) => {
         localStorage.setItem('priorities', JSON.stringify(arr));
       }
       if (
-        priorities.every((i) =>  i.title !== data[0].todos[x].title)
+        priorities.every((i) => i.title !== data[0].todos[x].title)
       ) {
         priorities.push({ priority: data[0].todos[x].priority, title: data[0].todos[x].title });
         localStorage.setItem('priorities', JSON.stringify(priorities));
@@ -42,7 +42,7 @@ const Done = (obj) => {
   localStorage.setItem('groups', JSON.stringify(data));
   window.location.reload();
 };
-const Delete = (x) => {
+const Delete = () => {
   const arr = JSON.parse(localStorage.getItem('groups'));
   for (let i = 0; i < arr.length; i += 1) {
     if (getParam().trim() === arr[i].title) {
@@ -57,17 +57,17 @@ const Delete = (x) => {
 const Tdisplay = () => {
   const content = document.getElementById('content');
   const home = document.createElement('a');
-  home.href = `?=`;
+  home.href = '?=';
   home.innerHTML = 'home';
   home.className = 'position-fixed btn btn-primary px-2 m-0';
   home.style = 'top:0';
   if (JSON.parse(localStorage.getItem('groups'))[0].todos.length === 0) {
     const today = new Date();
 
-    const date = `${today.getFullYear()} - ${(today.getMonth() + 1)} - ${today.getDate()}`
+    const date = `${today.getFullYear()} - ${(today.getMonth() + 1)} - ${today.getDate()}`;
     const groups = JSON.parse(localStorage.getItem('groups'));
     groups[0].todos.push(
-      new Todo('Morning mommy', 'Saying good morning to my beloved mother', date, false, 'high')
+      new Todo('Morning mommy', 'Saying good morning to my beloved mother', date, false, 'high'),
     );
     localStorage.setItem('groups', JSON.stringify(groups));
   }
@@ -75,11 +75,12 @@ const Tdisplay = () => {
   const groups = JSON.parse(localStorage.getItem('groups'));
   groups.map((x) => {
     if (x.title === getParam().trim()) {
-      return data = [...x.todos];
+      data = [...x.todos];
+      return data
     }
   });
 
-  for (const x of data) {
+  for (let x = 0; x < data.length; x += 1) {
     const container = document.createElement('div');
     container.className = 'container';
     const card = document.createElement('div');
@@ -104,12 +105,12 @@ const Tdisplay = () => {
     const del = document.createElement('button');
     del.className = 'ml-auto btn btn-danger';
     del.innerHTML = 'Delete';
-    priority.innerHTML = x.priority;
-    h3.innerHTML = x.title;
+    priority.innerHTML = data[x].priority;
+    h3.innerHTML = data[x].title;
     h3.className = 'text-white';
-    p.innerHTML = `<strong>Description:</strong> <br> ${x.description}`;
-    span.innerHTML = `<strong>Date: </strong> <br> ${formatDate(x.date)}`;
-    done.checked = x.done;
+    p.innerHTML = `<strong>Description:</strong> <br> ${data[x].description}`;
+    span.innerHTML = `<strong>Date: </strong> <br> ${formatDate(data[x].date)}`;
+    done.checked = data[x].done;
     if (priority.innerHTML === 'high') {
       header.className = 'p-3 bg-danger';
     }
@@ -124,10 +125,10 @@ const Tdisplay = () => {
       h3.className = 'text-dark';
     }
     done.addEventListener('click', () => {
-      Done(x);
+      Done(data[x]);
     });
     del.addEventListener('click', () => {
-      Delete(x);
+      Delete(data[x]);
     });
     divDone.appendChild(doneL);
     divDone.appendChild(done);

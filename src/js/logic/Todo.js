@@ -22,8 +22,8 @@ export default class Todo {
       data.map((x) => {
         if (x.title === getParam().trim()) {
           selectedField = x;
-          return selectedField
         }
+        return selectedField;
       });
       selectedField.todos.push(this.create());
     }
@@ -31,7 +31,12 @@ export default class Todo {
   }
 
   create() {
-    const { title, description, date, done, priority } = this;
+    const {
+      title,
+      description,
+      date,
+      done,
+      priority } = this;
 
     return {
       title,
