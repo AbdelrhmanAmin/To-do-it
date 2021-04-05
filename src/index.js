@@ -5,15 +5,15 @@ import Gdisplay from './js/DOM/group_display';
 import getParam from './js/DOM/tools';
 import Group from './js/logic/Group';
 
-  if (
-    localStorage.getItem('groups') == null
-    || JSON.parse(localStorage.getItem('groups'))[0] === undefined
-    || window.localStorage.length == 0
-  ) {
-    localStorage.setItem('groups',
-      JSON.stringify([new Group('Default', 'The general group where all created todos exist', []),
-      ]));
-  }
+if (
+  localStorage.getItem('groups') === null
+  || JSON.parse(localStorage.getItem('groups'))[0] === undefined
+  || window.localStorage.length === 0
+) {
+  localStorage.setItem('groups',
+    JSON.stringify([new Group('Default', 'The general group where all created todos exist', []),
+    ]));
+}
 
 const url = [];
 const data = JSON.parse(localStorage.getItem('groups'));
