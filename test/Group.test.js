@@ -25,7 +25,7 @@ describe('Group testing', () => {
     })
   })
   describe('save', () => {
-    test('Check if the item is saved to localStorage', () => {
+    test('Check if the group is saved to localStorage', () => {
       let group = new Group('Mommy', 'Kiss mom', [])
       group.add()
       expect(localStorage.getItem('groups')).toEqual(JSON.stringify([group]));

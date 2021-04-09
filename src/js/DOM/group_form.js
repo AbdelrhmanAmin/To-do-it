@@ -81,13 +81,11 @@ const Gform = () => {
   dialog.appendChild(container);
   modal.appendChild(dialog);
   displayHTML.appendChild(modalBtn);
-  btn.addEventListener('submit', (e) => {
-    e.preventDefault();
+  btn.addEventListener('click', () => {
     if (title.value !== '' && description.value !== '') {
       const group = new Group(title.value, description.value, []);
       group.add();
     }
-    window.location.reload();
   });
 };
 export default Gform;

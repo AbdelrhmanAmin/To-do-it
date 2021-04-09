@@ -10,7 +10,7 @@ export default class Group {
     if (JSON.parse(localStorage.getItem('groups')) === null) {
       arr = []
     } else {
-      arr = JSON.parse(localStorage.getItem('groups'))
+      arr = JSON.parse(localStorage.getItem('groups'));
     }
     arr.push(this.create());
     localStorage.setItem('groups', JSON.stringify(arr));

@@ -11,7 +11,7 @@ const Delete = (x) => {
   window.location.reload();
 };
 const Gdisplay = () => {
-  const content = document.getElementById('content');
+  const content = document.querySelector('#content');
   if (
     localStorage.getItem('groups') === null
     || JSON.parse(localStorage.getItem('groups'))[0] === undefined
