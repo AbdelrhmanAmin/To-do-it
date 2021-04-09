@@ -8,7 +8,7 @@ export default class Group {
   add() {
     let arr;
     if (JSON.parse(localStorage.getItem('groups')) === null) {
-      arr = []
+      arr = [];
     } else {
       arr = JSON.parse(localStorage.getItem('groups'));
     }

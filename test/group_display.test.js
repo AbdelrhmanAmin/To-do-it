@@ -3,7 +3,7 @@ import Group from '../src/js/logic/Group';
 
 describe('Group display testing', () => {
   document.body.innerHTML = '<div id="content"></div>';
-  Gdisplay()
+  Gdisplay();
   test('Display auto default group', () => {
     const h3 = document.getElementsByTagName('h3');
     for (let i = 0; i < h3.length; i += 1) {
@@ -13,7 +13,7 @@ describe('Group display testing', () => {
     }
   });
   test('Check if the group is displayed', () => {
-    let group = new Group('Mommy', 'Kiss mom', [])
+    let group = new Group('Mommy', 'Kiss mom', []);
     group.add();
     const h3 = document.getElementsByTagName('h3');
     for (let i = 0; i < h3.length; i += 1) {
@@ -22,4 +22,4 @@ describe('Group display testing', () => {
       }
     }
   });
-})
+});

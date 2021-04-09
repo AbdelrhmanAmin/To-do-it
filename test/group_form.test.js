@@ -1,4 +1,3 @@
-import Gdisplay from '../src/js/DOM/group_display';
 import Gform from '../src/js/DOM/group_form';
 import Group from '../src/js/logic/Group';
 
@@ -18,14 +17,14 @@ describe('Group form testing', () => {
     const btn = document.querySelector('#modal-btn2');
     const modal = document.querySelector('#exampleModal2');
     btn.click();
-    expect(modal.style.display).not.toBe("");
-  })
+    expect(modal.style.display).not.toBe('');
+  });
   test('Check if group appears after submitting', () => {
     const title = document.querySelector('#title');
-    title.value = 'Mommy'
+    title.value = 'Mommy';
     const description = document.querySelector('#description');
-    description.value = "I love to kiss mommy's hand everyday!"
-    let group = new Group(title.value, description.value, [])
+    description.value = "I love to kiss mommy's hand everyday!";
+    const group = new Group(title.value, description.value, []);
     group.add();
     const h3 = document.getElementsByTagName('h3');
     for (let i = 0; i < h3.length; i += 1) {
@@ -33,5 +32,5 @@ describe('Group form testing', () => {
         expect(h3[i].innerHTML).toBe(title.value);
       }
     }
-  })
-})
+  });
+});
