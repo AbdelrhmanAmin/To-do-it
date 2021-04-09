@@ -27,7 +27,6 @@ describe('Todo form testing', () => {
     title.value = 'Kiss mommy';
     const description = document.querySelector('#description');
     description.value = "I love to kiss mommy's hand everyday!";
-    const btn = document.querySelector('#btn');
     const group = new Group('Mommy', 'Kiss mom', []);
     group.add();
     const todo = new Todo(title.value, description.value, formatDate(new Date()), false, 'high');
