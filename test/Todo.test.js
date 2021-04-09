@@ -1,6 +1,7 @@
 import Todo from '../src/js/logic/Todo';
 import Group from '../src/js/logic/Group';
 import { formatDate } from '../src/js/DOM/tools';
+
 describe('todo testing', () => {
   describe('create a new todo', () => {
     let todo = new Todo('Mommy', "Kissing mom's hand", formatDate(new Date()), false, 'high');

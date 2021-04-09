@@ -21,7 +21,7 @@ describe('Todo form testing', () => {
     const modal = document.querySelector('#exampleModal');
     btn.click();
     expect(modal.style.display).not.toBe('');
-  })
+  });
   test('Check if Todo appears after submitting', () => {
     const title = document.querySelector('#title');
     title.value = 'Kiss mommy';

@@ -13,7 +13,7 @@ describe('Group display testing', () => {
     }
   });
   test('Check if the group is displayed', () => {
-    let group = new Group('Mommy', 'Kiss mom', []);
+    const group = new Group('Mommy', 'Kiss mom', []);
     group.add();
     const h3 = document.getElementsByTagName('h3');
     for (let i = 0; i < h3.length; i += 1) {
