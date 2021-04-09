@@ -15,8 +15,8 @@ describe('Todo form testing', () => {
       aria-hidden="true"
     ></div>`;
 
-  Tform();
   test('Check if create button exist', () => {
+    Tform();
     const btn = document.querySelector('#modal-btn2');
     const modal = document.querySelector('#exampleModal');
     btn.click();
@@ -28,7 +28,6 @@ describe('Todo form testing', () => {
     const description = document.querySelector('#description');
     description.value = "I love to kiss mommy's hand everyday!";
     const btn = document.querySelector('#btn');
-    btn.click();
     const group = new Group('Mommy', 'Kiss mom', []);
     group.add();
     const todo = new Todo(title.value, description.value, formatDate(new Date()), false, 'high');
