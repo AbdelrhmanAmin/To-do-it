@@ -6,7 +6,12 @@ export default class Group {
   }
 
   add() {
-    const arr = JSON.parse(localStorage.getItem('groups'));
+    let arr;
+    if (JSON.parse(localStorage.getItem('groups')) === null) {
+      arr = [];
+    } else {
+      arr = JSON.parse(localStorage.getItem('groups'));
+    }
     arr.push(this.create());
     localStorage.setItem('groups', JSON.stringify(arr));
   }

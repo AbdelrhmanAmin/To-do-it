@@ -102,13 +102,11 @@ const Tform = () => {
   modal.appendChild(dialog);
 
   displayHTML.appendChild(modalBtn);
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
+  btn.addEventListener('click', () => {
     if (title.value !== '' && description.value !== '') {
       const todo = new Todo(title.value, description.value, date.value, false, priority.value);
       todo.add();
     }
-    window.location.reload();
   });
 };
 export default Tform;
